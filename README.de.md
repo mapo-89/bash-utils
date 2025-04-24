@@ -95,6 +95,11 @@ cd test/
 bash test_logging.sh
 ```
 
+## 🧰 Bash-Projektgenerator
+
+Der **Bash-Projektgenerator** hilft dir, schnell eine neue Projektstruktur aufzusetzen. Weitere Informationen findest du in der [Projektgenerator-Dokumentation](PROJECT_GENERATOR.md).
+
+
 ## 🛡 Lizenz
 MIT License – Frei verwendbar, auch kommerziell. Keine Garantie.
 
@@ -103,7 +108,6 @@ MIT License – Frei verwendbar, auch kommerziell. Keine Garantie.
 - 🧪 Test-Suite mit Bats
 - 🧠 Hilfsfunktionen für Netzwerke, Dateien etc.
 - 🔐 Weitere Validatoren (Pfad, JSON, Netzwerk etc.)
-- 🧰 Bash-Projektgenerator auf Basis von bash-utils
 
 ## 🤝 Mitwirken
 Issues, Pull Requests & Ideen sind willkommen – let’s build together! 🚀
