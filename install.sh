@@ -9,22 +9,21 @@ if [[ "$EUID" -ne 0 ]]; then
   exit 1
 fi
 
+# Der Pfad zum aktuellen Verzeichnis (wo das Skript liegt)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Erstelle das Installationsverzeichnis
 echo "🔧 Installiere bash-utils..."
 mkdir -p "$INSTALL_DIR"
 
 # Alle Dateien in das Installationsverzeichnis kopieren
 echo "📦 Dateien werden kopiert..."
-cp -r ./bash-utils/* "$INSTALL_DIR/"
+cp -r "$SCRIPT_DIR/"* "$INSTALL_DIR/"
 
 # Setze die richtigen Berechtigungen
 echo "🔒 Berechtigungen werden gesetzt..."
 chmod -R 755 "$INSTALL_DIR"
 chown -R root:root "$INSTALL_DIR"
-
-# Sicherstellen, dass die lib.sh im Systempfad verfügbar ist
-echo "🔧 Füge bash-utils zum Systempfad hinzu..."
-ln -sf "$INSTALL_DIR/lib.sh" /usr/local/bin/bash-utils
 
 # Überprüfen, ob die Installation erfolgreich war
 if [[ -f "$INSTALL_DIR/lib.sh" ]]; then

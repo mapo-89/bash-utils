@@ -7,13 +7,13 @@ Welcome to `bash-utils` - a collection of reusable bash helper scripts for loggi
 ## 📦 Installation
 
 ```bash
-sudo git clone https://github.com/dein-nutzername/bash-utils.git /usr/local/bin/bash-utils
+sudo git clone https://github.com/mapo-89/bash-utils.git /usr/local/bin/bash-utils
 ```
 
 Or as a submodule in the project:
 
 ```bash
-git submodule add https://github.com/dein-nutzername/bash-utils utils/bash-utils
+git submodule add https://github.com/mapo-89/bash-utils utils/bash-utils
 ```
 
 ### 1. use **installation script**
