@@ -7,14 +7,64 @@ Willkommen bei `bash-utils` – einer Sammlung wiederverwendbarer Bash-Hilfsskri
 ## 📦 Installation
 
 ```bash
-sudo git clone https://github.com/dein-nutzername/bash-utils.git /usr/local/bin/bash-utils
+sudo git clone https://github.com/mapo-89/bash-utils.git /usr/local/bin/bash-utils
 ```
 
 Oder als Submodul im Projekt:
 
 ```bash
-git submodule add https://github.com/dein-nutzername/bash-utils utils/bash-utils
+git submodule add https://github.com/mapo-89/bash-utils utils/bash-utils
 ```
+
+### 1. **Installationsskript verwenden**
+
+Um `bash-utils` schnell und einfach zu installieren, kannst du das folgende Installationsskript verwenden. Dieses Skript stellt sicher, dass alle Dateien an den richtigen Stellen landen und die Berechtigungen korrekt gesetzt werden.
+
+Führe das Installationsskript mit Root-Rechten aus:
+
+```bash
+sudo bash install.sh
+```
+
+### 2. **Umgebungsvariablen setzen**
+
+Wenn du das Skript erfolgreich ausgeführt hast, stelle sicher, dass die Umgebungsvariable `BASH_UTILS_DIR` korrekt gesetzt ist. Du kannst sie manuell zu deiner `~/.bashrc` oder `~/.bash_profile` hinzufügen:
+
+```bash
+export BASH_UTILS_DIR='/usr/local/bin/bash-utils'
+```
+
+### 3. **Überprüfen der Installation**
+
+Um sicherzustellen, dass `bash-utils` korrekt installiert wurde, kannst du folgendes Kommando ausführen:
+
+```bash
+source /usr/local/bin/bash-utils/lib.sh
+```
+
+Falls keine Fehlermeldung erscheint, wurde die Installation erfolgreich abgeschlossen.
+
+### 4. **Deinstallation**
+Falls du `bash-utils` wieder deinstallieren möchtest, kannst du das folgende Uninstallationsskript verwenden:
+
+Führe das Deinstallationsskript aus:
+
+```bash
+sudo bash uninstall.sh
+```
+
+### 5. **Testen der Funktionalität**
+Nachdem `bash-utils` installiert ist, kannst du die Funktionalität testen, indem du zum Beispiel ein kleines Testskript erstellst, das die `log_*`-Funktionen aus `logging.sh` verwendet.
+
+Beispiel:
+
+```bash
+#!/bin/bash
+source /usr/local/bin/bash-utils/lib.sh
+
+log_info "Installation von bash-utils erfolgreich!"
+```
+
 ## 📁 Struktur
 ```
 bash-utils/

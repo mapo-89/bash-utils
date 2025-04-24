@@ -15,6 +15,56 @@ Or as a submodule in the project:
 ```bash
 git submodule add https://github.com/dein-nutzername/bash-utils utils/bash-utils
 ```
+
+### 1. use **installation script**
+
+To install `bash-utils` quickly and easily, you can use the following installation script. This script ensures that all files end up in the right places and that the permissions are set correctly.
+
+Execute the installation script with root privileges:
+
+```bash
+sudo bash install.sh
+```
+
+### 2. **Set environment variables**
+
+Once you have successfully executed the script, make sure that the environment variable `BASH_UTILS_DIR` is set correctly. You can add it manually to your `~/.bashrc` or `~/.bash_profile`:
+
+```bash
+export BASH_UTILS_DIR='/usr/local/bin/bash-utils'
+```
+
+### 3. **Check the installation**
+
+To make sure that `bash-utils` has been installed correctly, you can run the following command:
+
+```bash
+source /usr/local/bin/bash-utils/lib.sh
+```
+
+If no error message appears, the installation has been completed successfully.
+
+### 4. **Uninstallation**
+If you want to uninstall `bash-utils` again, you can use the following uninstall script:
+
+Execute the uninstall script:
+
+```bash
+sudo bash uninstall.sh
+```
+
+### 5 **Testing the functionality**
+After `bash-utils` is installed, you can test the functionality, for example by creating a small test script that uses the `log_*` functions from `logging.sh`.
+
+Example:
+
+```bash
+#!/bin/bash
+source /usr/local/bin/bash-utils/lib.sh
+
+log_info “Installation of bash-utils successful!”
+```
+
 ## 📁 structure
 ```
 bash-utils/
