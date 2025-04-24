@@ -9,7 +9,7 @@ BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 
 # 🔍 Eigenes Skriptverzeichnis ermitteln
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")/" && pwd)"
 
 # 🔗 Module laden
 source "$BASH_UTILS_DIR/colors.sh"
@@ -18,8 +18,8 @@ source "$BASH_UTILS_DIR/env.sh"
 source "$BASH_UTILS_DIR/validators.sh"
 
 # 📁 Standardverzeichnisse initialisieren (falls gesetzt)
-SCRIPTS_DIR="${SCRIPTS_DIR:-$ROOT_DIR/scripts}"
-LOG_DIR="${LOG_DIR:-$ROOT_DIR/logs}"
+SCRIPTS_DIR="${SCRIPTS_DIR:-$SCRIPT_DIR/scripts}"
+LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/logs}"
 mkdir -p "$SCRIPTS_DIR" "$LOG_DIR"
 
 # 📝 Log-Datei setzen (ggf. vom Projekt überschreibbar)

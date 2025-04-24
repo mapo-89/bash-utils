@@ -4,7 +4,7 @@
 
 # === 🔄 .env-Datei laden ===
 load_env() {
-  local default_dir="$(dirname "${BASH_UTILS_DIR:-$SCRIPT_DIR}")"
+  local default_dir="$(dirname $SCRIPT_DIR)"
   local env_file="${ENV_FILE:-$default_dir/.env}"
 
   if [[ -f "$env_file" ]]; then
