@@ -31,6 +31,7 @@ sudo bash install.sh
 Once you have successfully executed the script, make sure that the environment variable `BASH_UTILS_DIR` is set correctly. You can add it manually to your `~/.bashrc` or `~/.bash_profile`:
 
 ```bash
+# Set the BASH_UTILS_DIR environment variable to the path where your bash-utils are located.
 export BASH_UTILS_DIR='/usr/local/bin/bash-utils'
 ```
 

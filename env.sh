@@ -17,7 +17,7 @@ load_env() {
       log_error --no-log ".env-Datei $env_file nicht gefunden."
       exit 1
     else
-      log_warning --no-log "⚠️  .env-Datei $env_file nicht gefunden, lade trotzdem fort."
+      log_warning --no-log ".env-Datei $env_file nicht gefunden, lade trotzdem fort."
     fi
   fi
 }
