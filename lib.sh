@@ -5,12 +5,6 @@
 # 🧭 Verzeichnis der Bash-Utils (default: /usr/local/bin/bash-utils)
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 
-# 📌 Arbeitsverzeichnis des aufrufenden Projekts (z. B. per ROOT_DIR setzen)
-ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
-
-# 🔍 Eigenes Skriptverzeichnis ermitteln
-SCRIPT_DIR="$(cd "$(dirname "$0")/" && pwd)"
-
 # 🔗 Module laden
 source "$BASH_UTILS_DIR/colors.sh"
 source "$BASH_UTILS_DIR/logging.sh"

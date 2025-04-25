@@ -4,8 +4,8 @@
 
 # === 🔄 .env-Datei laden ===
 load_env() {
-  local default_dir="$(dirname $SCRIPT_DIR)"
-  local env_file="${ENV_FILE:-$default_dir/.env}"
+  # Standardverzeichnis für die .env-Datei
+  local env_file="${ENV_FILE:-$SCRIPT_DIR/.env}"
 
   if [[ -f "$env_file" ]]; then
     set -o allexport
