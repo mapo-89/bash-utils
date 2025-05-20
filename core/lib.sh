@@ -6,11 +6,16 @@
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 
 # 🔗 Module laden
-source "$BASH_UTILS_DIR/colors.sh"
-source "$BASH_UTILS_DIR/logging.sh"
-source "$BASH_UTILS_DIR/env.sh"
-source "$BASH_UTILS_DIR/validators.sh"
-source "$BASH_UTILS_DIR/file_helpers.sh"
+# Core-Funktionen
+source "$BASH_UTILS_DIR/core/colors.sh"
+source "$BASH_UTILS_DIR/core/logging.sh"
+source "$BASH_UTILS_DIR/core/env.sh"
+
+# Validierung
+source "$BASH_UTILS_DIR/validation/validators.sh"
+
+# IO-Helfer
+source "$BASH_UTILS_DIR/io/file_helpers.sh"
 
 # 📁 Standardverzeichnisse initialisieren (falls gesetzt)
 SCRIPTS_DIR="${SCRIPTS_DIR:-$SCRIPT_DIR/scripts}"

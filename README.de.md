@@ -85,6 +85,12 @@ bash-utils/
     ```bash
     source /usr/local/bin/bash-utils/lib.sh
     ```
+    ℹ️ Hinweis: `lib.sh` lädt nur die Kernfunktionen (Logging, Farben, Umgebungsvariablen, Validierung etc.).
+    Wenn du UI-Elemente wie Menüs oder Layoutfunktionen brauchst, binde zusätzlich `ui/menu.sh` ein:
+
+    ```bash
+    source "$BASH_UTILS_DIR/ui/menu.sh"
+    ```
 2. Optional: `.env-Datei` ins Projektverzeichnis legen
     ```ini
     # .env
