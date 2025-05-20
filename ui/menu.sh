@@ -35,12 +35,20 @@ menu_read_choice() {
   local max=$1
   echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–${max}): ${NC}"
   while true; do
-    read -rs choice
+    # Wenn Esc gedrückt (leer) abbrechen
+    IFS=' ' read -rsn1 first
+    if [[ "$first" == $'\e' ]]; then
+      echo -e "\n${RED}👋  Beenden...${NC}"
+      exit 0
+    fi
+    echo -n "$first"  # Sichtbar machen
+    read -r rest      # Rest der Eingabe
+    local choice="${first}${rest}"
+    
     case "$choice" in
       $'\e') echo; return 0 ;;  # Esc = abbrechen
       [1-9])
         if (( choice <= max )); then
-          echo "$choice"
           return 1
         else
           echo -e "\n${RED}Ungültige Auswahl! Bitte Zahl zwischen 1 und $max eingeben.${NC}"
@@ -64,16 +72,10 @@ menu_loop() {
 
   while true; do
     menu_show "$title" "${opts[@]}"
-    local choice
-    
-    # Wenn Esc gedrückt (leer) abbrechen
-    IFS=' ' read -rsn1 first
-    if [[ "$first" == $'\e' ]]; then
-      echo -e "${RED}👋  Beenden...${NC}"
-      exit 0
-    fi
 
+    local choice
     menu_read_choice "${#opts[@]}"
+    
     local idx=$((choice - 1))
     local action="${actions[idx]}"
 
