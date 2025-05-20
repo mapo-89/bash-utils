@@ -3,7 +3,7 @@
 # utils/logging.sh – Logging-Funktionen
 
 # Farben laden (zentraler Pfad, global nutzbar)
-source "${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/colors.sh"
+source "${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/core/colors.sh"
 
 # ==== Konfiguration ====
 LOG_LEVEL="${LOG_LEVEL:-debug}"   # Mögliche Werte: debug, info, warning, error

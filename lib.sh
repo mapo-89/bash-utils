@@ -1,25 +1,23 @@
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && { echo "❌ Dieses Skript ist als Bibliothek gedacht und nicht direkt ausführbar."; exit 1; };
+#!/bin/bash
 
-# lib.sh – Zentrale Initialisierung und Helfer
+# Bash-Utils laden, falls nötig
+BASH_UTILS_UI_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/ui"
+source "$BASH_UTILS_UI_DIR/layout.sh"
+source "$BASH_UTILS_UI_DIR/lines.sh"
+source "$BASH_UTILS_DIR/core/colors.sh"
 
-# 🧭 Verzeichnis der Bash-Utils (default: /usr/local/bin/bash-utils)
-BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
+clear
+print_line "${YELLOW}"
+center_colored_text "⚠️  Hinweis: Veralteter Einstiegspunkt" "${YELLOW}"
+print_line_new "${YELLOW}"
 
-# 🔗 Module laden
-source "$BASH_UTILS_DIR/colors.sh"
-source "$BASH_UTILS_DIR/logging.sh"
-source "$BASH_UTILS_DIR/env.sh"
-source "$BASH_UTILS_DIR/validators.sh"
-source "$BASH_UTILS_DIR/file_helpers.sh"
+center_colored_text "Die Datei 'lib.sh' wurde verschoben." "${NV}"
+center_colored_text "Bitte verwende ab sofort:" "${NV}"
+echo
+center_colored_text "➡️  core/lib.sh" "${GREEN}"
+echo
+center_colored_text "Passe dein Skript wie folgt an:" "${MAGENTA}"
+center_colored_text 'source ${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/core/lib.sh' "${CYAN}"
+print_line_new "${YELLOW}"
 
-# 📁 Standardverzeichnisse initialisieren (falls gesetzt)
-SCRIPTS_DIR="${SCRIPTS_DIR:-$SCRIPT_DIR/scripts}"
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/logs}"
-mkdir -p "$SCRIPTS_DIR" "$LOG_DIR"
-
-# 📝 Log-Datei setzen (ggf. vom Projekt überschreibbar)
-LOG_FILE="${LOG_FILE:-$LOG_DIR/main.log}"
-mkdir -p "$(dirname "$LOG_FILE")"
-
-# 🌍 .env-Datei laden (sofern gewünscht)
-[[ "$SKIP_ENV" != "true" ]] && load_env
+exit 1

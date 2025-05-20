@@ -40,7 +40,7 @@ export BASH_UTILS_DIR='/usr/local/bin/bash-utils'
 To make sure that `bash-utils` has been installed correctly, you can run the following command:
 
 ```bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 ```
 
 If no error message appears, the installation has been completed successfully.
@@ -61,7 +61,7 @@ Example:
 
 ```bash
 #!/bin/bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 
 log_info “Installation of bash-utils successful!”
 ```
@@ -69,21 +69,34 @@ log_info “Installation of bash-utils successful!”
 ## 📁 structure
 ```
 bash-utils/
-├── ui/ # UI-specific scripts
-│ ├── layout.sh # Functions for layout and text formatting
-│ ├─── lines.sh # Functions for lines and indents
-│ └─── menu.sh # Menu display and UI interaction
-├── colors.sh # Color definitions (text + background)
-├── env.sh # .env loader + mandatory variable check
-├── lib.sh # Main library for integration (initialization)
-├── logging.sh # Logging with icons + color + file
-└── validators.sh # Validation functions (e.g. IP, port etc.)
+├── core/
+│ ├── colors.sh             # Color definitions (text + background)
+│ ├─── lib.sh               # Main library for integration (initialization)
+│ ├── env.sh                # .env loader + mandatory variable check
+│ └── logging.sh            # Logging with icons + color + file
+├── io/                     # Operations
+│ └─── file_helpers.sh      # File operations (e.g. copy, check, validate paths),
+├── ui/                     # UI-specific scripts
+│ ├── layout.sh             # Functions for layout and text formatting
+│ ├─── lines.sh             # Functions for lines and indents
+│ └── menu.sh               # Menu display and UI interaction
+├── validation/
+│ └── validators.sh         # Validation functions (e.g. IP, port, etc.)
+├── install.sh
+├── uninstall.sh
+└── test/
+    └── ...
 ```
 
 ## 🚀 Use in your project
 1. include `lib.sh` at the beginning of your script:
     ```bash
-    source /usr/local/bin/bash-utils/lib.sh
+    source /usr/local/bin/bash-utils/core/lib.sh
+    ```
+    ℹ️ Note: `lib.sh` only loads the core functions (logging, colors, environment variables, validation etc.).
+    If you need UI elements such as menus or layout functions, also include `ui/menu.sh`:
+     ```bash
+    source “$BASH_UTILS_DIR/ui/menu.sh”
     ```
 2. optionally: place `.env file` in the project directory
     ```ini
@@ -94,7 +107,7 @@ bash-utils/
 3. example script with logging & variables:
     ```bash
     #!/bin/bash
-    source /usr/local/bin/bash-utils/lib.sh
+    source /usr/local/bin/bash-utils/core/lib.sh
 
     require_var “ALERT_EMAIL” “Please set in the .env”
 
@@ -128,18 +141,24 @@ require_var “API_KEY” “Missing key for external access”
 ### 🧩 lib.sh
 Central start file, loads all other modules:
 ```bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 ```
+
+### 🧩 file_helpers.sh
+Helper functions for file management, e.g. file permissions, path validation, file existence check.
+
+### 📋 ui/menu.sh
+Provides reusable menu functions with colored output, input validation and menu loop.
 
 ## ⚙ Configurable environment variables
 
-| Variable | Default value | Description |
+| Variable        | Default value                     | Description                                   |
 |-----------------|-----------------------------------|-----------------------------------------------|
-| BASH_UTILS_DIR | /usr/local/bin/bash-utils | Base directory of the modules |
-| ROOT_DIR | Project directory | Useful for .env and logs |
-| LOG_FILE | $LOG_DIR/main.log | Log file for log_* functions |
-| LOG_DIR | $ROOT_DIR/logs | Directory for logs |
-| SKIP_ENV | false | If true, .env is not loaded |
+| BASH_UTILS_DIR  | /usr/local/bin/bash-utils         | Base directory of the modules                 |
+| ROOT_DIR        | Project directory                 | Useful for .env and logs                      |
+| LOG_FILE        | $LOG_DIR/main.log                 | Log file for log_* functions                  |
+| LOG_DIR         | $ROOT_DIR/logs                    | Directory for logs                            |
+| SKIP_ENV        | false                             | If true, .env is not loaded                   |
 
 ## 🧪 Test
 ```bash
