@@ -155,7 +155,6 @@ MIT License - Free to use, even commercially. No guarantee.
 - 🧪 Test suite with Bats
 - 🧠 Help functions for networks, files etc.
 - 🔐 Further validators (path, JSON, network etc.)
-- 🧰 Bash project generator based on bash-utils
 
 ## 🤝 Contribute
 Issues, pull requests & ideas are welcome - let's build together! 🚀
