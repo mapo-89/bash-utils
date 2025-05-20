@@ -4,7 +4,7 @@
 # Set BASH_UTILS_DIR to current repo if not set
 export BASH_UTILS_DIR="${BASH_UTILS_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 
-source "$BASH_UTILS_DIR/core/lib.sh"
+source "$BASH_UTILS_DIR/lib.sh"
 
 echo "Testing core functions..."
 
