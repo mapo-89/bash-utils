@@ -9,7 +9,7 @@ source "${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/core/colors.sh"
 source "${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/ui/lines.sh"
 source "${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}/ui/layout.sh"
 
-# Hauptmenü anzeigen
+# === Menü anzeigen ===
 menu_show() {
   local title="$1"
   shift
@@ -30,12 +30,12 @@ menu_show() {
   echo -e "${CYAN}Esc)${NC} ❌  Beenden"
 }
 
-# Menü-Eingabe abfragen und validieren
+# === Auswahl auswerten ===
 menu_read_choice() {
   local max=$1
   echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–${max}): ${NC}"
   while true; do
-    read -rsn1 choice
+    read -rs choice
     case "$choice" in
       $'\e') echo; return 0 ;;  # Esc = abbrechen
       [1-9])
@@ -65,12 +65,15 @@ menu_loop() {
   while true; do
     menu_show "$title" "${opts[@]}"
     local choice
-    menu_read_choice "${#opts[@]}"
+    
     # Wenn Esc gedrückt (leer) abbrechen
-    if [[ -z "$choice" ]]; then
-      echo -e "${RED}❌  Beenden...${NC}"
-      break
+    IFS=' ' read -rsn1 first
+    if [[ "$first" == $'\e' ]]; then
+      echo -e "${RED}👋  Beenden...${NC}"
+      exit 0
     fi
+
+    menu_read_choice "${#opts[@]}"
     local idx=$((choice - 1))
     local action="${actions[idx]}"
 
