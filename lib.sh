@@ -10,6 +10,7 @@ source "$BASH_UTILS_DIR/colors.sh"
 source "$BASH_UTILS_DIR/logging.sh"
 source "$BASH_UTILS_DIR/env.sh"
 source "$BASH_UTILS_DIR/validators.sh"
+source "$BASH_UTILS_DIR/file_helpers.sh"
 
 # 📁 Standardverzeichnisse initialisieren (falls gesetzt)
 SCRIPTS_DIR="${SCRIPTS_DIR:-$SCRIPT_DIR/scripts}"
