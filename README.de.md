@@ -40,7 +40,7 @@ export BASH_UTILS_DIR='/usr/local/bin/bash-utils'
 Um sicherzustellen, dass `bash-utils` korrekt installiert wurde, kannst du folgendes Kommando ausführen:
 
 ```bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 ```
 
 Falls keine Fehlermeldung erscheint, wurde die Installation erfolgreich abgeschlossen.
@@ -61,7 +61,7 @@ Beispiel:
 
 ```bash
 #!/bin/bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 
 log_info "Installation von bash-utils erfolgreich!"
 ```
@@ -69,21 +69,29 @@ log_info "Installation von bash-utils erfolgreich!"
 ## 📁 Struktur
 ```
 bash-utils/
-├── ui/                # UI-spezifische Skripte
-│   ├── layout.sh      # Funktionen für Layout und Textformatierung
-│   ├── lines.sh       # Funktionen für Linien und Einzüge
-│   └── menu.sh        # Menü-Darstellung und UI-Interaktion
-├── colors.sh         # Farbdefinitionen (Text + Hintergrund)
-├── env.sh            # .env-Loader + Pflichtvariablen-Prüfung
-├── lib.sh            # Haupt-Bibliothek zum Einbinden (Initialisierung)
-├── logging.sh        # Logging mit Icons + Farbe + Datei
-└── validators.sh     # Validierungsfunktionen (z.B. IP, Port etc.)
+├── core/
+│   ├── colors.sh               # Farbdefinitionen (Text + Hintergrund)
+│   ├── lib.sh                  # Haupt-Bibliothek zum Einbinden (Initialisierung)
+│   ├── env.sh                  # .env-Loader + Pflichtvariablen-Prüfung
+│   └── logging.sh              # Logging mit Icons + Farbe + Datei
+├── io/                         # Operationen
+│   └── file_helpers.sh         # Dateioperationen handelt (z. B. kopieren, prüfen, Pfade validieren),
+├── ui/                         # UI-spezifische Skripte
+│   ├── layout.sh               # Funktionen für Layout und Textformatierung
+│   ├── lines.sh                # Funktionen für Linien und Einzüge
+│   └── menu.sh                 # Menü-Darstellung und UI-Interaktion
+├── validation/
+│   └── validators.sh           # Validierungsfunktionen (z.B. IP, Port etc.)
+├── install.sh
+├── uninstall.sh
+└── test/
+    └── ...
 ```
 
 ## 🚀 Verwendung in deinem Projekt
 1. Binde `lib.sh` am Anfang deines Skripts ein:
     ```bash
-    source /usr/local/bin/bash-utils/lib.sh
+    source /usr/local/bin/bash-utils/core/lib.sh
     ```
     ℹ️ Hinweis: `lib.sh` lädt nur die Kernfunktionen (Logging, Farben, Umgebungsvariablen, Validierung etc.).
     Wenn du UI-Elemente wie Menüs oder Layoutfunktionen brauchst, binde zusätzlich `ui/menu.sh` ein:
@@ -100,7 +108,7 @@ bash-utils/
 3. Beispielskript mit Logging & Variablen:
     ```bash
     #!/bin/bash
-    source /usr/local/bin/bash-utils/lib.sh
+    source /usr/local/bin/bash-utils/core/lib.sh
 
     require_var "ALERT_EMAIL" "Bitte in der .env setzen"
 
@@ -133,12 +141,18 @@ require_var "API_KEY" "Fehlender Schlüssel für externen Zugriff"
 ### 🧩 lib.sh
 Zentrale Einstiegsdatei, lädt alle anderen Module:
 ```bash
-source /usr/local/bin/bash-utils/lib.sh
+source /usr/local/bin/bash-utils/core/lib.sh
 ```
+
+### 🧩 file_helpers.sh
+Hilfsfunktionen rund um Dateiverwaltung, z.B. Datei-Berechtigungen, Pfad-Validierung, Dateiexistenz prüfen.
+
+### 📋 ui/menu.sh
+Bietet wiederverwendbare Menüfunktionen mit farbiger Ausgabe, Eingabevalidierung und Menü-Loop.
 
 ## ⚙ Konfigurierbare Umgebungsvariablen
 
-| Variable        | Standardwert                     | Beschreibung                                  |
+| Variable        | Standardwert                      | Beschreibung                                  |
 |-----------------|-----------------------------------|-----------------------------------------------|
 | BASH_UTILS_DIR  | /usr/local/bin/bash-utils         | Basisverzeichnis der Module                   |
 | ROOT_DIR        | Projektverzeichnis                | Nützlich für .env und Logs                    |
@@ -154,7 +168,7 @@ bash test_logging.sh
 
 ## 🧰 Bash-Projektgenerator
 
-Der **Bash-Projektgenerator** hilft dir, schnell eine neue Projektstruktur aufzusetzen. Weitere Informationen findest du in der [Projektgenerator-Dokumentation](PROJECT_GENERATOR.md).
+Der **Bash-Projektgenerator** hilft dir, schnell eine neue Projektstruktur aufzusetzen. Weitere Informationen findest du in der [Projektgenerator-Dokumentation](PROJECT_GENERATOR.de.md).
 
 
 ## 🛡 Lizenz
