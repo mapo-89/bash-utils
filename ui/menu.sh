@@ -33,34 +33,24 @@ menu_show() {
 # === Auswahl auswerten ===
 menu_read_choice() {
   local max=$1
-  echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–${max}): ${NC}"
-  while true; do
-    # Wenn Esc gedrückt (leer) abbrechen
-    IFS=' ' read -rsn1 first
-    if [[ "$first" == $'\e' ]]; then
-      echo -e "\n${RED}👋  Beenden...${NC}"
-      exit 0
-    fi
-    echo -n "$first"  # Sichtbar machen
-    read -r rest      # Rest der Eingabe
-    local choice="${first}${rest}"
-    
+  local choice=$2
+  
     case "$choice" in
       $'\e') echo; return 0 ;;  # Esc = abbrechen
       [1-9])
         if (( choice <= max )); then
-          return 1
+          echo $choice
+          exit 0
         else
-          echo -e "\n${RED}Ungültige Auswahl! Bitte Zahl zwischen 1 und $max eingeben.${NC}"
-          echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–${max}): ${NC}"
+          echo -e "\n${RED}Ungültige Auswahl! Bitte Zahl zwischen 1 und $max eingeben. Menü wird neu geladen...${NC}"
+          return 0
         fi
         ;;
       *)
-        echo -e "\n${RED}Ungültige Eingabe!${NC}"
-        echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–${max}): ${NC}"
+        echo -e "\n${RED}Ungültige Eingabe! Menü wird neu geladen...${NC}"
+        return 0
         ;;
     esac
-  done
 }
 
 # Menü loop starten mit Optionen & Funktionen
@@ -69,20 +59,38 @@ menu_loop() {
   shift
   local -n opts=$1    # Array mit Optionstexten
   local -n actions=$2 # Array mit Funktionsnamen oder Befehlen
+  local max="${#opts[@]}"
 
   while true; do
     menu_show "$title" "${opts[@]}"
 
-    local choice
-    menu_read_choice "${#opts[@]}"
+    local firstchoice
+    echo -n -e "${CYAN}➡️  Bitte wähle eine Option (1–$max): ${NC}"
+     # Wenn Esc gedrückt (leer) abbrechen
+    read -rsn1 first
+    if [[ "$first" == $'\e' ]]; then
+      echo -e "\n${RED}👋  Beenden...${NC}"
+      exit 0
+    fi
+    echo -n "$first"  # Sichtbar machen
+    read -r rest      # Rest der Eingabe
+    local firstchoice="${first}${rest}"
     
+    choice=$(menu_read_choice "$max" "${firstchoice}")
+    if ! [[ "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > max )); then
+      echo $choice
+      sleep 1
+      continue
+    fi
+
     local idx=$((choice - 1))
     local action="${actions[idx]}"
+    local label="${opts[idx]}"
+    local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
 
-    # Loggen, wenn LOG_FILE definiert
-    if [[ -n "$LOG_FILE" ]]; then
-      echo "[$(date "+%Y-%m-%d %H:%M:%S")] START: ${opts[idx]}" >> "$LOG_FILE"
-    fi
+    echo
+
+    [[ -n "$LOG_FILE" ]] && echo "[$timestamp] START: $label" >> "$LOG_FILE"
 
     # Aktion ausführen (als Funktion oder Kommando)
     if declare -F "$action" > /dev/null; then
