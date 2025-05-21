@@ -20,12 +20,12 @@ source "$BASH_UTILS_DIR/io/file_helpers.sh"
 # 📁 Standardverzeichnisse initialisieren (falls gesetzt)
 : "${SCRIPTS_DIR:="$SCRIPT_DIR/scripts"}"
 : "${LOG_DIR:="$SCRIPT_DIR/logs"}"
-[[ -n "$SCRIPTS_DIR" ]] && mkdir -p "$SCRIPTS_DIR"
-[[ -n "$LOG_DIR" ]] && mkdir -p "$LOG_DIR"
+[[ "$SKIP_DIRS" != "true" ]] && mkdir -p "$SCRIPTS_DIR"
+[[ "$SKIP_DIRS" != "true" ]] && mkdir -p "$LOG_DIR"
 
 # 📝 Log-Datei setzen (ggf. vom Projekt überschreibbar)
 : "${LOG_FILE:="$LOG_DIR/main.log"}"
-[[ -n "$LOG_FILE" ]] && mkdir -p "$(dirname "$LOG_FILE")"
+[[ "$SKIP_DIRS" != "true" ]] && mkdir -p "$(dirname "$LOG_FILE")"
 
 # 🌍 .env-Datei laden (sofern gewünscht)
 [[ "$SKIP_ENV" != "true" ]] && load_env
