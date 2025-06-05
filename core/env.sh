@@ -8,10 +8,17 @@ load_env() {
   local env_file="${ENV_FILE:-$SCRIPT_DIR/.env}"
 
   if [[ -f "$env_file" ]]; then
-    set -o allexport
-    source "$env_file"
-    set +o allexport
-    log_success --no-log "Umgebungsvariablen aus $env_file geladen."
+    while IFS='=' read -r key value; do
+      # Kommentar oder leere Zeile überspringen
+      [[ "$key" =~ ^#.*$ || -z "$key" ]] && continue
+
+      # Nur setzen, wenn Variable noch nicht existiert
+      if [[ -z "${!key}" ]]; then
+        export "$key=$value"
+      fi
+    done < <(grep -v '^#' "$env_file" | grep '=')
+
+    log_success --no-log "Umgebungsvariablen aus $env_file geladen (bestehende nicht überschrieben)."
   else
     if [[ "$ENV_REQUIRED" == "true" ]]; then
       log_error --no-log ".env-Datei $env_file nicht gefunden."
