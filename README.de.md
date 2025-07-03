@@ -166,6 +166,18 @@ cd test/
 bash test_logging.sh
 ```
 
+## 📧 Testmail senden
+
+Das Testscript `test_mail.sh` sendet eine Testmail an eine angegebene Empfängeradresse.
+
+**Verwendung:**
+
+```bash
+./test_mail.sh recipient@example.com
+```
+
+Das Script sendet eine einfache Testmail mit dem Betreff `Testmail von <Hostname>` und gibt eine Erfolgsmeldung aus.
+
 ## 🧰 Bash-Projektgenerator
 
 Der **Bash-Projektgenerator** hilft dir, schnell eine neue Projektstruktur aufzusetzen. Weitere Informationen findest du in der [Projektgenerator-Dokumentation](PROJECT_GENERATOR.de.md).

@@ -166,6 +166,18 @@ cd test/
 bash test_logging.sh
 ```
 
+## 📧 Send test mail
+
+The test script `test_mail.sh` sends a test mail to a specified recipient address.
+
+**Usage:**
+
+```bash
+./test_mail.sh recipient@example.com
+```
+
+The script sends a simple test mail with the subject `Testmail from <hostname>` and outputs a success message.
+
 ## 🛡 License
 MIT License - Free to use, even commercially. No guarantee.
 
