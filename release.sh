@@ -28,15 +28,74 @@ if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
     exit 1
 fi
 
-# 4️⃣ Changelog aktualisieren
+# 4️⃣ Changelog aktualisieren (nach Commit-Typ gruppieren)
 CHANGELOG="CHANGELOG.md"
 echo "## [$NEW_VERSION] - $(date +%Y-%m-%d)" >> "$CHANGELOG"
 echo "" >> "$CHANGELOG"
-git log "$LAST_TAG"..HEAD --pretty=format:"- %s" >> "$CHANGELOG"
-echo "" >> "$CHANGELOG"
+
+# Commit-Typen → Changelog-Kategorien
+declare -A TYPES=(
+    # Added
+    ["✨ Feature:"]="Added"
+    ["🛠️ Tool:"]="Added"
+    ["🗃️ DB:"]="Added"
+    ["🛣️ Routes:"]="Added"
+    ["💄 UI:"]="Added"
+    # Changed
+    ["♻️ Refactoring:"]="Changed"
+    ["🔤 Text:"]="Changed"
+    ["🎨 Styling:"]="Changed"
+    # Deprecated
+    ["⚠️ Deprecated:"]="Deprecated"
+    # Removed
+    ["🔥 Remove:"]="Removed"
+    ["🚚 Move:"]="Removed"
+    # Fixed
+    ["🐛 Fix:"]="Fixed"
+    ["🚑 Hotfix:"]="Fixed"
+    # Security
+    ["🔒 Security:"]="Security"
+    ["🛡️ Security:"]="Security"
+    # Performance / Logging
+    ["⚡️ Performance:"]="Performance"
+    ["📊 Logs:"]="Performance"
+    # Documentation
+    ["📝 Docs:"]="Documentation"
+    ["📚 Docs:"]="Documentation"
+    ["🌐 i18n:"]="Documentation"
+    # Chore / Config
+    ["🔧 Chore:"]="Chore"
+    ["📦 Deps:"]="Chore"
+    ["⬆️ Deps:"]="Chore"
+    ["⬇️ Deps:"]="Chore"
+    # Deployment / Release
+    ["🚀 Deploy:"]="Deployment"
+    ["🔖 Release:"]="Deployment"
+    # Miscellaneous
+    ["🎉 Init:"]="Miscellaneous"
+    ["✏️ Typo:"]="Miscellaneous"
+    ["🙈 Gitignore:"]="Miscellaneous"
+    ["🔀 Merge:"]="Miscellaneous"
+)
+
+# Commits nach Typ sortieren
+for EMOJI in "${!TYPES[@]}"; do
+    TYPE_NAME=${TYPES[$EMOJI]}
+    COMMITS=$(git log "$LAST_TAG"..HEAD --pretty=format:"%s" | grep "^$EMOJI" || true)
+    if [[ -n "$COMMITS" ]]; then
+        echo "### $TYPE_NAME" >> "$CHANGELOG"
+        while IFS= read -r COMMIT; do
+            # Emoji entfernen
+            MESSAGE=$(echo "$COMMIT" | sed -E "s/^$EMOJI[[:space:]]*//")
+            echo "- $MESSAGE" >> "$CHANGELOG"
+        done <<< "$COMMITS"
+        echo "" >> "$CHANGELOG"
+    fi
+done
+
 
 git add "$CHANGELOG"
-git commit -m "chore: update CHANGELOG for $NEW_TAG"
+git commit -m "📝 Docs: update CHANGELOG for $NEW_TAG"
 
 # 5️⃣ Git-Tag setzen und pushen
 git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
