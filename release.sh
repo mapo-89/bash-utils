@@ -33,8 +33,15 @@ fi
 
 # 4️⃣ Changelog aktualisieren (nach Commit-Typ gruppieren)
 CHANGELOG="CHANGELOG.md"
-echo "## [$BASH_UTILS_VERSION] - $(date +%Y-%m-%d)" >> "$CHANGELOG"
-echo "" >> "$CHANGELOG"
+HEADER=$(head -n 7 "$CHANGELOG") # Keep existing file header
+OLD_CONTENT=$(tail -n +7 "$CHANGELOG")
+
+# Temporäre Datei anlegen
+> "$CHANGELOG.new"
+echo "$HEADER" >> "$CHANGELOG.new"
+echo "" >> "$CHANGELOG.new"
+echo "## [$BASH_UTILS_VERSION] - $(date +%Y-%m-%d)" >> "$CHANGELOG.new"
+echo "" >> "$CHANGELOG.new"
 
 # Commit-Typen → Changelog-Kategorien
 declare -A TYPES=(
@@ -92,10 +99,13 @@ for EMOJI in "${!TYPES[@]}"; do
             MESSAGE=$(echo "$COMMIT" | sed -E "s/^$EMOJI[[:space:]]*//")
             echo "- $MESSAGE" >> "$CHANGELOG"
         done <<< "$COMMITS"
-        echo "" >> "$CHANGELOG"
+        echo "" >> "$CHANGELOG.new"
     fi
 done
 
+# Alten Inhalt anhängen
+echo "$OLD_CONTENT" >> "$CHANGELOG.new"
+mv "$CHANGELOG.new" "$CHANGELOG"
 
 git add "$CHANGELOG"
 git commit -m "📝 Docs: update CHANGELOG for $NEW_TAG"
@@ -110,7 +120,7 @@ echo "✅ Git-Tag $NEW_TAG gesetzt und Changelog aktualisiert."
 # 6️⃣ GitHub Release erstellen (falls noch nicht vorhanden)
 REPO=$(git remote get-url origin | sed -E 's/.*[:\/]([^\/]+\/[^\/]+)(\.git)?/\1/')
 if ! gh release view "$NEW_TAG" --repo "$REPO" &> /dev/null; then
-    NOTES=$(awk "/^## \\[${NEW_VERSION}\\]/ {flag=1; next} /^## \\[/ {flag=0} flag" CHANGELOG.md)
+    NOTES=$(awk "/^## \\[${BASH_UTILS_VERSION}\\]/ {flag=1; next} /^## \\[/ {flag=0} flag" CHANGELOG.md)
     [[ -z "$NOTES" ]] && NOTES="Release $NEW_TAG"
     gh release create "$NEW_TAG" --repo "$REPO" --title "$NEW_TAG" --notes "$NOTES"
     echo "✅ GitHub Release $NEW_TAG erstellt."
