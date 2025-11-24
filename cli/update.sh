@@ -16,7 +16,7 @@ if [[ -z "$LATEST" ]]; then
     echo "❌ Keine Release-Version gefunden!"
     exit 1
 fi
-# GitHub-Tags enthalten ein 'v', z.B. "v1.5.0"
+
 LATEST_VERSION="${LATEST#v}"
 
 echo "📌 Installierte Version: $BASH_UTILS_VERSION"

@@ -1,7 +1,6 @@
 #!/bin/bash
 # release.sh – Komplettes Release-Skript für bash-utils
 
-set -e
 
 # 0️⃣ Prüfen, ob GitHub CLI installiert ist
 if ! command -v gh &> /dev/null; then

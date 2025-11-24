@@ -63,6 +63,6 @@ EOF
 chmod 755 "$BUILD_DIR/DEBIAN/prerm"
 
 # 6️⃣ Paket bauen
-dpkg-deb --build "$BUILD_DIR" "${$PKG_NAME}_${PKG_VERSION}_all.deb"
+dpkg-deb --build "$BUILD_DIR" "${PKG_NAME}_${PKG_VERSION}_all.deb"
 
-echo "✅ Paket erstellt: ${$PKG_NAME}_${PKG_VERSION}_all.deb"
+echo "✅ Paket erstellt: ${PKG_NAME}_${PKG_VERSION}_all.deb"
