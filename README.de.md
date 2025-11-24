@@ -138,6 +138,30 @@ chmod +x build_deb.sh
 * Installieren: `sudo dpkg -i bash-utils.deb`
 * Entfernen: `sudo dpkg -r bash-utils`
 
+## 🏷 Release-Skript – Automatische Releases
+
+Wir haben ein **Release-Skript** `release.sh` hinzugefügt, das alle Schritte für ein Release automatisiert:
+
+- Changelog aus Commits seit dem letzten Tag aktualisieren
+- Git-Tag setzen
+- GitHub-Release erstellen
+- Optional ein Debian-Paket bauen und direkt an das Release anhängen
+
+### Verwendung
+
+1. Skript ausführbar machen:
+```bash
+chmod +x release.sh
+```
+
+2. Release erstellen:
+```bash
+./release.sh
+```
+- Du wirst nach der neuen Version gefragt (z. B. 1.2.0)
+- Das Skript aktualisiert automatisch das CHANGELOG, erstellt den Git-Tag und das GitHub-Release
+- Optional kann das .deb-Paket gebaut und hochgeladen werden
+
 ## 📁 Struktur
 ```
 bash-utils/
