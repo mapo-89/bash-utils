@@ -5,7 +5,7 @@ set -e
 
 # Variablen
 PKG_NAME="bash-utils"
-PKG_VERSION="1.0.0"   # optional dynamisch aus Git-Tag setzen
+PKG_VERSION="$1"
 BUILD_DIR="$(pwd)/${PKG_NAME}-deb"
 INSTALL_PATH="usr/local/bin/$PKG_NAME"
 
@@ -63,6 +63,6 @@ EOF
 chmod 755 "$BUILD_DIR/DEBIAN/prerm"
 
 # 6️⃣ Paket bauen
-dpkg-deb --build "$BUILD_DIR" $PKG_NAME".deb"
+dpkg-deb --build "$BUILD_DIR" "${$PKG_NAME}_${PKG_VERSION}_all.deb"
 
-echo "✅ Paket erstellt: ${BUILD_DIR}.deb"
+echo "✅ Paket erstellt: ${$PKG_NAME}_${PKG_VERSION}_all.deb"
