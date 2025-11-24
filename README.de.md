@@ -293,7 +293,6 @@ Der **Bash-Projektgenerator** hilft dir, schnell eine neue Projektstruktur aufzu
 MIT License – Frei verwendbar, auch kommerziell. Keine Garantie.
 
 ## ✨ Ideen für die Zukunft
-- 📦 Bereitstellung als .deb-Paket
 - 🧪 Test-Suite mit Bats
 - 🧠 Hilfsfunktionen für Netzwerke, Dateien etc.
 - 🔐 Weitere Validatoren (Pfad, JSON, Netzwerk etc.)

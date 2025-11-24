@@ -288,7 +288,6 @@ The script sends a simple test mail with the subject `Testmail from <hostname>` 
 MIT License - Free to use, even commercially. No guarantee.
 
 ## ✨ Ideas for the future
-- 📦 Provision as .deb package
 - 🧪 Test suite with Bats
 - 🧠 Help functions for networks, files etc.
 - 🔐 Further validators (path, JSON, network etc.)
