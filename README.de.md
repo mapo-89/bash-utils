@@ -189,7 +189,15 @@ bash-utils/
 ## 🚀 Verwendung in deinem Projekt
 1. Binde `lib.sh` am Anfang deines Skripts ein:
     ```bash
-    source /usr/local/bin/bash-utils/core/lib.sh
+    # === 🔗 Bash-Utils laden ===
+    BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
+    source "$BASH_UTILS_DIR/core/lib.sh" 2>/dev/null || \
+    source "$BASH_UTILS_DIR/lib.sh" 2>/dev/null || { 
+    echo -e "❌  Die erforderliche Datei lib.sh wurde nicht gefunden.\n\
+    Bitte stelle sicher, dass bash-utils installiert ist.\n\
+    Du findest das Projekt hier: \033[34mhttps://github.com/mapo-89/bash-utils\033[0m"
+    exit 1
+    }
     ```
     ℹ️ Hinweis: `lib.sh` lädt nur die Kernfunktionen (Logging, Farben, Umgebungsvariablen, Validierung etc.).
     Wenn du UI-Elemente wie Menüs oder Layoutfunktionen brauchst, binde zusätzlich `ui/menu.sh` ein:

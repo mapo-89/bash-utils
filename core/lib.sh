@@ -1,6 +1,8 @@
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && { echo "❌ Dieses Skript ist als Bibliothek gedacht und nicht direkt ausführbar."; exit 1; };
 
 # lib.sh – Zentrale Initialisierung und Helfer
+# Version von bash-utils
+BASH_UTILS_VERSION="1.3.0"
 
 # 🧭 Verzeichnis der Bash-Utils (default: /usr/local/bin/bash-utils)
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"

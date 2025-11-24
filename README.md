@@ -189,7 +189,15 @@ bash-utils/
 ## 🚀 Use in your project
 1. include `lib.sh` at the beginning of your script:
     ```bash
-    source /usr/local/bin/bash-utils/core/lib.sh
+    # === Load Bash utilities ===
+    BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
+    source “$BASH_UTILS_DIR/core/lib.sh” 2>/dev/null || \
+    source “$BASH_UTILS_DIR/lib.sh” 2>/dev/null || { 
+    echo -e "❌  The required file lib.sh was not found.\n\
+    Please ensure that bash-utils is installed.\n\
+    You can find the project here: \033[34mhttps://github.com/mapo-89/bash-utils\033[0m"
+    exit 1
+    }
     ```
     ℹ️ Note: `lib.sh` only loads the core functions (logging, colors, environment variables, validation etc.).
     If you need UI elements such as menus or layout functions, also include `ui/menu.sh`:
