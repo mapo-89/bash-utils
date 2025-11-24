@@ -24,7 +24,7 @@ ln -sf "$INSTALL_DIR/tools/crlf_guardian.sh" /usr/local/bin/crlf-guardian
 chmod +x /usr/local/bin/crlf-guardian
 
 # === CLI-Wrapper erstellen ===
-ln -sf "$INSTALL_DIR/cli.sh" /usr/local/bin/bash-utils-cli
+ln -sf "$INSTALL_DIR/cli/cli.sh" /usr/local/bin/bash-utils-cli
 chmod +x /usr/local/bin/bash-utils-cli
 
 # Setze die richtigen Berechtigungen

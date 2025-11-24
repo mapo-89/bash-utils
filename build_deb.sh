@@ -16,7 +16,7 @@ mkdir -p "$BUILD_DIR/$INSTALL_PATH"
 
 # 2️⃣ Dateien kopieren
 echo "📦 Kopiere bash-utils in Paketstruktur..."
-cp -r core io ui validation tools test cli.sh lib.sh LICENSE.md README.de.md README.md "$BUILD_DIR/$INSTALL_PATH/"
+cp -r core io ui validation tools test cli lib.sh LICENSE.md README.de.md README.md "$BUILD_DIR/$INSTALL_PATH/"
 
 # 3️⃣ DEBIAN/control erstellen
 cat > "$BUILD_DIR/DEBIAN/control" <<EOF
@@ -42,7 +42,7 @@ if [[ -f "$TARGET" ]]; then
 fi
 
 # === CLI-Wrapper erstellen ===
-ln -sf "/usr/local/bin/bash-utils/cli.sh" /usr/local/bin/bash-utils-cli
+ln -sf "/usr/local/bin/bash-utils/cli/cli.sh" /usr/local/bin/bash-utils-cli
 chmod +x /usr/local/bin/bash-utils-cli
 
 chmod -R 755 /usr/local/bin/bash-utils
