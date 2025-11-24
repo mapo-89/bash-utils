@@ -72,3 +72,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2025-11-24
 
 - ✨ Feature: add automated release script (release.sh) with GitHub + Debian support
+## [1.4.0] - 2025-11-24
+
+### Added
+- Add CLI wrapper for bash-utils with --version support
+
+### Added
+- Add auto-update functionality for bash-utils
+- Add centralized version handling and auto-versioned release workflow
+
+### Chore
+- add enhanced release.sh with commit-type sorting
+
