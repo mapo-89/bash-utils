@@ -20,13 +20,16 @@ mkdir -p "$INSTALL_DIR"
 echo "📦 Dateien werden kopiert..."
 cp -r "$SCRIPT_DIR/"* "$INSTALL_DIR/"
 
+ln -sf "$INSTALL_DIR/tools/crlf_guardian.sh" /usr/local/bin/crlf-guardian
+chmod +x /usr/local/bin/crlf-guardian
+
 # Setze die richtigen Berechtigungen
 echo "🔒 Berechtigungen werden gesetzt..."
 chmod -R 755 "$INSTALL_DIR"
 chown -R root:root "$INSTALL_DIR"
 
 # Überprüfen, ob die Installation erfolgreich war
-if [[ -f "$INSTALL_DIR/lib.sh" ]]; then
+if [[ -f "$INSTALL_DIR/core/lib.sh" ]]; then
   echo "✅ bash-utils erfolgreich installiert."
 else
   echo "❌ Installation fehlgeschlagen."

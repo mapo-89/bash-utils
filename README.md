@@ -66,6 +66,58 @@ source /usr/local/bin/bash-utils/core/lib.sh
 log_info “Installation of bash-utils successful!”
 ```
 
+# 🆕 CRLF‑Guardian – Automatic detection & repair of CRLF
+
+**CRLF‑Guardian** is a new bash-utils module that automatically finds and fixes unwanted Windows line endings (CRLF).
+
+### ✨ Features
+
+* 🔍 Scan files for CRLF
+* 🛠 Automatically convert CRLF to LF
+* 📁 Recursive scanning of folders
+* 🧩 Full integration with bash-utils (logging, colors, path management)
+* 🚀 Globally usable as CLI via symlink
+
+---
+
+## 🚀 Usage
+
+### **Scan for CRLF**
+
+```bash
+crlf-guardian scan
+```
+
+or for a specific folder:
+
+```bash
+crlf-guardian scan ./src
+```
+
+### **Automatically fix CRLF**
+
+```bash
+crlf-guardian fix
+```
+
+### **Install Git pre-commit hook**
+
+```bash
+crlf-guardian install-hook
+```
+
+---
+
+## 🔧 Integration as a tool
+
+The CRLF Guardian is located in:
+
+```
+bash-utils/tools/crlf_guardian.sh
+```
+
+The module automatically detects the installation path and loads the bash-utils library, even if it is executed via a symlink.
+
 ## 📁 structure
 ```
 bash-utils/
@@ -82,6 +134,8 @@ bash-utils/
 │ └── menu.sh               # Menu display and UI interaction
 ├── validation/
 │ └── validators.sh         # Validation functions (e.g. IP, port, etc.)
+├── tools/
+│ └── crlf_guardian.sh
 ├── install.sh
 ├── uninstall.sh
 └── test/

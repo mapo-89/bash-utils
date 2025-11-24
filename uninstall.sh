@@ -15,5 +15,6 @@ rm -rf "$INSTALL_DIR"
 
 # Entferne den Symlink
 rm -f /usr/local/bin/bash-utils
+rm -f /usr/local/bin/bash-utils
 
 echo "✅ bash-utils wurde erfolgreich deinstalliert."
