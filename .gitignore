@@ -1,2 +1,4 @@
 /.vscode
+/bash-utils-deb
+*.deb
 .env

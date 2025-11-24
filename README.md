@@ -118,6 +118,26 @@ bash-utils/tools/crlf_guardian.sh
 
 The module automatically detects the installation path and loads the bash-utils library, even if it is executed via a symlink.
 
+## 📦 Create Debian package
+
+`bash-utils` can also be offered as a **Debian package** for Ubuntu/Debian. There is a release script `build_deb.sh` that automatically:
+
+* copies all files into the package structure
+* creates `DEBIAN/control` as well as `postinst` and `prerm`
+* sets symlink for CRLF-Guardian
+* sets permissions correctly
+
+### Build package
+
+```bash
+chmod +x build_deb.sh
+./build_deb.sh
+```
+
+* Result: `bash-utils.deb`
+* Install: `sudo dpkg -i bash-utils.deb`
+* Remove: `sudo dpkg -r bash-utils`
+
 ## 📁 structure
 ```
 bash-utils/
