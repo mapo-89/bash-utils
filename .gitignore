@@ -1,4 +1,4 @@
 /.vscode
-/bash-utils-deb
-*.deb
+packaging/
+!packaging/build_deb.sh
 .env

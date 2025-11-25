@@ -1,12 +1,10 @@
 #!/bin/bash
 # build_deb.sh – Erzeugt ein Debian-Paket aus bash-utils
 
-set -e
-
 # Variablen
 PKG_NAME="bash-utils"
 PKG_VERSION="$1"
-BUILD_DIR="$(pwd)/${PKG_NAME}-deb"
+BUILD_DIR="$(pwd)/packaging/${PKG_NAME}-deb"
 INSTALL_PATH="usr/local/bin/$PKG_NAME"
 
 # 1️⃣ Aufräumen

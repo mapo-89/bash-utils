@@ -135,7 +135,7 @@ if [[ "$BUILD_DEB" =~ ^[Yy]$ ]]; then
         echo "❌ build_deb.sh nicht gefunden!"
         exit 1
     fi
-    ./build_deb.sh "$BASH_UTILS_VERSION"
+    ./packaging/build_deb.sh "$BASH_UTILS_VERSION"
     DEB_FILE=$(ls bash-utils*.deb | tail -n1)
     gh release upload "$NEW_TAG" "$DEB_FILE" --repo "$REPO"
     echo "✅ Debian-Paket $DEB_FILE an Release $NEW_TAG hochgeladen."
