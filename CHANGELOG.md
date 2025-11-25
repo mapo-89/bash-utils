@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 - update CHANGELOG for v1.6.1
-- update CHANGELOG for v1.6.1
-- update CHANGELOG for v1.6.1
 
 ### Chore
 - use local Bash-utils in release process
