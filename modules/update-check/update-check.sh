@@ -2,7 +2,8 @@
 
 # Automatischer Update-Checker für bash-utils
 # Prüft GitHub Releases und schreibt Info-Dateien für die CLI
-
+SKIP_ENV="true"
+SKIP_DIRS="true"
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 LOCAL_VERSION_FILE="$BASH_UTILS_DIR/.version"
 NOTIFY_FILE="$BASH_UTILS_DIR/.update_available"

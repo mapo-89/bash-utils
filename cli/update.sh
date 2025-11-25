@@ -6,6 +6,7 @@ ARCH="all"
 TMP_DIR=$(mktemp -d)
 
 SKIP_ENV="true"
+SKIP_DIRS="true"
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 source "$BASH_UTILS_DIR/core/lib.sh"
 

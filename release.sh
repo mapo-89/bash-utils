@@ -20,6 +20,7 @@ LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
 
 # 3️⃣ Version automatisch aus lib.sh auslesen
 SKIP_ENV="true"
+SKIP_DIRS="true"
 BASH_UTILS_DIR="$(dirname "$0")"
 source "$BASH_UTILS_DIR/core/lib.sh"
 
