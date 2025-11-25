@@ -4,7 +4,7 @@
 # Variablen
 PKG_NAME="bash-utils"
 PKG_VERSION="$1"
-BUILD_DIR="$(pwd)/packaging/${PKG_NAME}-deb"
+BUILD_DIR=/tmp/${PKG_NAME}-build
 INSTALL_PATH="usr/local/bin/$PKG_NAME"
 
 # 1️⃣ Aufräumen
@@ -62,5 +62,8 @@ chmod 755 "$BUILD_DIR/DEBIAN/prerm"
 
 # 6️⃣ Paket bauen
 dpkg-deb --build "$BUILD_DIR" "${PKG_NAME}_${PKG_VERSION}_all.deb"
+
+#  Aufräumen
+rm -rf "$BUILD_DIR"
 
 echo "✅ Paket erstellt: ${PKG_NAME}_${PKG_VERSION}_all.deb"
