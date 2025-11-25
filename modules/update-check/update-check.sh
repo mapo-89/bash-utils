@@ -9,14 +9,16 @@ CACHE_DIR="$HOME/.cache/bash-utils"
 NOTIFY_FILE="$CACHE_DIR/update_available"
 mkdir -p "$CACHE_DIR"
 
-LATEST_VERSION=$(curl -s "https://api.github.com/repos/mapo-89/bash-utils/releases/latest" | grep '"tag_name":' | head -n1 | cut -d '"' -f4)
+LATEST=$(curl -s "https://api.github.com/repos/mapo-89/bash-utils/releases/latest" | grep '"tag_name":' | head -n1 | cut -d '"' -f4)
 
-if [[ -z "$LATEST_VERSION" ]]; then
+if [[ -z "$LATEST" ]]; then
     exit 0
 fi
 
+LATEST_VERSION="${LATEST#v}"
+
 # Version vergleichen
-if dpkg --compare-versions "${LATEST_VERSION#v}" gt "$BASH_UTILS_VERSION"; then
+if dpkg --compare-versions "$LATEST_VERSION" gt "$BASH_UTILS_VERSION"; then
     echo "$LATEST_VERSION" > "$NOTIFY_FILE"
 else
     rm -f "$NOTIFY_FILE"
