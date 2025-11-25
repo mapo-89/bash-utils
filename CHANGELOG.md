@@ -99,7 +99,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Logging with icons, colors, file output
 - `.env` handling for mandatory variables
 - Core modules for colors, logging, validation, UI
-- First version of test scripts## [1.3.0] - 2025-11-24
-
-- ✨ Feature: add automated release script (release.sh) with GitHub + Debian support
-
+- First version of test scripts

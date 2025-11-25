@@ -83,13 +83,14 @@ for EMOJI in "${!TYPES[@]}"; do
     TYPE_NAME=${TYPES[$EMOJI]}
     COMMITS=$(git log "$LAST_TAG"..HEAD --pretty=format:"%s" | grep "^$EMOJI" || true)
     if [[ -n "$COMMITS" ]]; then
-        echo "### $TYPE_NAME" >> "$CHANGELOG"
-        while IFS= read -r COMMIT; do
-            # Emoji entfernen
-            MESSAGE=$(echo "$COMMIT" | sed -E "s/^$EMOJI[[:space:]]*//")
-            echo "- $MESSAGE" >> "$CHANGELOG"
-        done <<< "$COMMITS"
-        echo "" >> "$CHANGELOG.new"
+        {
+            echo "### $TYPE_NAME"
+            while IFS= read -r COMMIT; do
+                MESSAGE=$(echo "$COMMIT" | sed -E "s/^$EMOJI[[:space:]]*//")
+                echo "- $MESSAGE"
+            done <<< "$COMMITS"
+            echo ""
+        } >> "$CHANGELOG.new"
     fi
 done
 
