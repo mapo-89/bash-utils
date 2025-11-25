@@ -35,28 +35,17 @@ fi
 
 echo "⬆️ Update verfügbar: $LOCAL_VERSION → $LATEST_VERSION"
 
-read -rp "Möchtest du das Update jetzt installieren? [y/N]: " answer
-case "$answer" in
-    y|Y|yes|YES)
-        echo "🔄 Starte Update..."
-        # Download und Installation
-        DEB_FILE="bash-utils_${LATEST#v}_$ARCH.deb"
-        URL="https://github.com/$REPO/releases/download/$LATEST/$DEB_FILE"
+# Download und Installation
+DEB_FILE="bash-utils_${LATEST#v}_$ARCH.deb"
+URL="https://github.com/$REPO/releases/download/$LATEST/$DEB_FILE"
 
-        echo "⬇️ Lade $DEB_FILE..."
-        curl -L -o "$TMP_DIR/$DEB_FILE" "$URL"
+echo "⬇️ Lade $DEB_FILE..."
+curl -L -o "$TMP_DIR/$DEB_FILE" "$URL"
 
-        echo "📦 Installiere $DEB_FILE..."
-        sudo dpkg -i "$TMP_DIR/$DEB_FILE" || sudo apt-get install -f -y
+echo "📦 Installiere $DEB_FILE..."
+sudo dpkg -i "$TMP_DIR/$DEB_FILE" || sudo apt-get install -f -y
 
-        echo "✅ bash-utils auf Version $LATEST_VERSION aktualisiert."
-        ;;
-    *)
-        echo "🚫 Update abgebrochen."
-        exit 0
-        ;;
-esac
-
+echo "✅ bash-utils auf Version $LATEST_VERSION aktualisiert." 
 
 # Aufräumen
 rm -rf "$TMP_DIR"
