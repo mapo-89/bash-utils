@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2025-11-25
+
+### Deployment
+- prepare Release 1.7.0
+
+### Added
+- Add interactive cronjob installation prompt in postinst
+- Improve update flow with confirmation prompt and robust script checks
+- Add automatic update-check module
+
+
 ## [1.6.2] - 2025-11-25
 
 ### Documentation
