@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [1.5.0] - 2025-11-25
+### Changed
+- own directory for packaging
 
+### Fixed
+- Build Debian has bad substitution
+
+---
 
 ## [1.4.0] - 2025-11-24
 ### Added
