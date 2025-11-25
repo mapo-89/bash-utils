@@ -51,37 +51,27 @@ declare -A TYPES=(
     ["🗃️ DB:"]="Added"
     ["🛣️ Routes:"]="Added"
     ["💄 UI:"]="Added"
-    # Changed
     ["♻️ Refactoring:"]="Changed"
     ["🔤 Text:"]="Changed"
     ["🎨 Styling:"]="Changed"
-    # Deprecated
     ["⚠️ Deprecated:"]="Deprecated"
-    # Removed
     ["🔥 Remove:"]="Removed"
     ["🚚 Move:"]="Removed"
-    # Fixed
     ["🐛 Fix:"]="Fixed"
     ["🚑 Hotfix:"]="Fixed"
-    # Security
     ["🔒 Security:"]="Security"
     ["🛡️ Security:"]="Security"
-    # Performance / Logging
     ["⚡️ Performance:"]="Performance"
     ["📊 Logs:"]="Performance"
-    # Documentation
     ["📝 Docs:"]="Documentation"
     ["📚 Docs:"]="Documentation"
     ["🌐 i18n:"]="Documentation"
-    # Chore / Config
     ["🔧 Chore:"]="Chore"
     ["📦 Deps:"]="Chore"
     ["⬆️ Deps:"]="Chore"
     ["⬇️ Deps:"]="Chore"
-    # Deployment / Release
     ["🚀 Deploy:"]="Deployment"
     ["🔖 Release:"]="Deployment"
-    # Miscellaneous
     ["🎉 Init:"]="Miscellaneous"
     ["✏️ Typo:"]="Miscellaneous"
     ["🙈 Gitignore:"]="Miscellaneous"
@@ -131,7 +121,7 @@ fi
 # 7️⃣ Optional: Debian-Paket bauen und anhängen
 read -p "Debian-Paket bauen und an Release anhängen? (y/n) " BUILD_DEB
 if [[ "$BUILD_DEB" =~ ^[Yy]$ ]]; then
-    if [[ ! -f build_deb.sh ]]; then
+    if [[ ! -f packaging/build_deb.sh ]]; then
         echo "❌ build_deb.sh nicht gefunden!"
         exit 1
     fi

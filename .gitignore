@@ -2,3 +2,4 @@
 packaging/
 !packaging/build_deb.sh
 .env
+*.deb
