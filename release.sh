@@ -20,8 +20,8 @@ LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
 
 # 3️⃣ Version automatisch aus lib.sh auslesen
 SKIP_ENV="true"
-BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
-source "$BASH_UTILS_DIR/core/lib.sh"
+NEW_BASH_UTILS_DIR="$(dirname "$0")"
+source "$NEW_BASH_UTILS_DIR/core/lib.sh"
 
 NEW_TAG="v$BASH_UTILS_VERSION"
 echo "ℹ️ Neues Release-Tag: $NEW_TAG"
