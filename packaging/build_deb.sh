@@ -45,6 +45,28 @@ chmod +x /usr/local/bin/bash-utils-cli
 
 chmod -R 755 /usr/local/bin/bash-utils
 chown -R root:root /usr/local/bin/bash-utils
+
+# Update-Check Cronjob nachfragen
+if [ "$DEBIAN_FRONTEND" != "noninteractive" ]; then
+    echo
+    echo "🔄 Optional: Automatische Update-Prüfung via Cron"
+    echo "Dieses Feature prüft einmal täglich, ob eine neue Version von bash-utils verfügbar ist."
+    echo
+    read -rp "Möchtest du den automatischen Update-Check aktivieren? [y/N]: " yn
+
+    case "$yn" in
+        y|Y|yes|YES)
+            /usr/local/bin/bash-utils/modules/update-check/install-cron.sh || true
+            echo "✔ Automatischer Update-Check aktiviert."
+            ;;
+        *)
+            echo "✖ Automatischer Update-Check wurde NICHT aktiviert."
+            ;;
+    esac
+else
+    echo "⚠️ Automatischer Update-Check übersprungen (noninteractive mode)."
+fi
+
 echo "✅ bash-utils installiert, crlf-guardian verfügbar."
 EOF
 chmod 755 "$BUILD_DIR/DEBIAN/postinst"
