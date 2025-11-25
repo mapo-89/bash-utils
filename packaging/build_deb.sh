@@ -14,7 +14,7 @@ mkdir -p "$BUILD_DIR/$INSTALL_PATH"
 
 # 2️⃣ Dateien kopieren
 echo "📦 Kopiere bash-utils in Paketstruktur..."
-cp -r core io ui validation tools test cli lib.sh LICENSE.md README.de.md README.md "$BUILD_DIR/$INSTALL_PATH/"
+cp -r core io ui validation tools test cli modules lib.sh LICENSE.md README.de.md README.md "$BUILD_DIR/$INSTALL_PATH/"
 
 # 3️⃣ DEBIAN/control erstellen
 cat > "$BUILD_DIR/DEBIAN/control" <<EOF
