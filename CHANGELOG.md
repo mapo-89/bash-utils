@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.6.1] - 2025-11-25
 
+### Documentation
+- update CHANGELOG for v1.6.1
+
+### Chore
+- use local Bash-utils in release process
+- Build Debian Package in tmp folder and cleanup
+
+
+## [1.6.1] - 2025-11-25
+
 ### Chore
 - Build Debian Package in tmp folder and cleanup
 
