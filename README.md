@@ -7,13 +7,7 @@ Welcome to `bash-utils` - a collection of reusable bash helper scripts for loggi
 ## 📦 Installation
 
 ```bash
-sudo git clone https://github.com/mapo-89/bash-utils.git /usr/local/bin/bash-utils
-```
-
-Or as a submodule in the project:
-
-```bash
-git submodule add https://github.com/mapo-89/bash-utils utils/bash-utils
+wget -O bash-utils.deb $(curl -s https://api.github.com/repos/mapo-89/bash-utils/releases/latest | grep "browser_download_url.*deb" | cut -d '"' -f 4) && sudo dpkg -i bash-utils.deb
 ```
 
 ### 1. use **installation script**
