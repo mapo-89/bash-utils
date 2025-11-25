@@ -5,6 +5,7 @@
 SKIP_ENV="true"
 SKIP_DIRS="true"
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
+source "$BASH_UTILS_DIR/core/lib.sh"
 CACHE_DIR="$HOME/.cache/bash-utils"
 NOTIFY_FILE="$CACHE_DIR/update_available"
 mkdir -p "$CACHE_DIR"
