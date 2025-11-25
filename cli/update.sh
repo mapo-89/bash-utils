@@ -10,8 +10,14 @@ BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 source "$BASH_UTILS_DIR/core/lib.sh"
 
 echo "🔎 Prüfe auf Updates..."
+# Versuche erst GitHub CLI
+if command -v gh &> /dev/null; then
+    LATEST=$(gh release list --repo "$REPO" | head -n1 | awk '{print $1}')
+else
+    # Fallback auf GitHub API via curl
+    LATEST=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep '"tag_name":' | head -n1 | cut -d '"' -f4)
+fi
 
-LATEST=$(gh release list --repo "$REPO" | head -n1 | awk '{print $1}')
 if [[ -z "$LATEST" ]]; then
     echo "❌ Keine Release-Version gefunden!"
     exit 1
