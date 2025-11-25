@@ -6,7 +6,8 @@ SKIP_DIRS="true"
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
 source "$BASH_UTILS_DIR/core/lib.sh"
 CLI_DIR="${BASH_UTILS_DIR}/cli"
-NOTIFY_FILE="$BASH_UTILS_DIR/.update_available"
+CACHE_DIR="$HOME/.cache/bash-utils"
+NOTIFY_FILE="$CACHE_DIR/update_available"
 
 if [[ -f "$NOTIFY_FILE" ]]; then
     NEW_VERSION=$(cat "$NOTIFY_FILE")
