@@ -149,10 +149,11 @@ chmod +x release.sh
 ```
 
 2. Release erstellen:
+In `/core/lib.sh` Version anpassen
+
 ```bash
 ./release.sh
 ```
-- Du wirst nach der neuen Version gefragt (z. B. 1.2.0)
 - Das Skript aktualisiert automatisch das CHANGELOG, erstellt den Git-Tag und das GitHub-Release
 - Optional kann das .deb-Paket gebaut und hochgeladen werden
 
