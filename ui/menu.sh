@@ -70,7 +70,7 @@ menu_loop() {
     read -rsn1 first
     if [[ "$first" == $'\e' ]]; then
       echo -e "\n${RED}👋  Beenden...${NC}"
-      exit 0
+      return 0
     fi
     echo -n "$first"  # Sichtbar machen
     read -r rest      # Rest der Eingabe
