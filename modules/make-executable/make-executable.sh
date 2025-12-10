@@ -7,21 +7,23 @@ make_executable() {
     shift
     local extensions=("$@")     # optionale Extensions (z.B. sh py pl)
 
-    echo "🔧 Durchsuche $dir nach Skripten zum ausführbar machen..."
+    # Standard-Endungen für Skripte
+    DEFAULT_EXTENSIONS=(sh bash zsh ksh py pl rb php js ts)
 
+    # Falls keine Endungen übergeben wurden → Standard verwenden
     if [[ ${#extensions[@]} -eq 0 ]]; then
-        find "$dir" -type f | while read -r file; do
+        extensions=("${DEFAULT_EXTENSIONS[@]}")
+    fi
+
+    echo "📄 Erlaube folgende Skript-Endungen: ${extensions[*]}"
+
+    # Nur Dateien mit gültiger Endung ausführbar machen
+    for ext in "${extensions[@]}"; do
+        find "$dir" -type f -name "*.${ext}" | while read -r file; do
             chmod +x "$file"
             echo "✔ $file"
         done
-    else
-        for ext in "${extensions[@]}"; do
-            find "$dir" -type f -name "*.$ext" | while read -r file; do
-                chmod +x "$file"
-                echo "✔ $file"
-            done
-        done
-    fi
-
+    done
+    
     echo "✅ Alle Skripte ausführbar gemacht."
 }
