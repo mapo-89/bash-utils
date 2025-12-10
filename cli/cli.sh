@@ -21,6 +21,13 @@ if [[ "$1" == "--version" ]]; then
     exit 0
 fi
 
+if [[ "$1" == "make-executable" || "$1" == "--make-executable" ]]; then
+    source "$BASH_UTILS_DIR/modules/make-executable/make-executable.sh"
+    shift
+    make_executable "$@"
+    exit 0
+fi
+
 # --- 🔄 Update-Funktion -------------------------------------------------------
 if [[ "$1" == "update" || "$1" == "--update" ]]; then
     UPDATE_SCRIPT="$CLI_DIR/update.sh"
