@@ -67,6 +67,8 @@ else
     echo "⚠️ Automatischer Update-Check übersprungen (noninteractive mode)."
 fi
 
+/usr/local/bin/bash-utils/modules/update-check/update-check.sh
+
 echo "✅ bash-utils installiert, crlf-guardian verfügbar."
 EOF
 chmod 755 "$BUILD_DIR/DEBIAN/postinst"

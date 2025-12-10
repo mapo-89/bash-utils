@@ -2,7 +2,7 @@
 
 # lib.sh – Zentrale Initialisierung und Helfer
 # Version von bash-utils
-BASH_UTILS_VERSION="1.8.0"
+BASH_UTILS_VERSION="1.8.1"
 
 # 🧭 Verzeichnis der Bash-Utils (default: /usr/local/bin/bash-utils)
 BASH_UTILS_DIR="${BASH_UTILS_DIR:-/usr/local/bin/bash-utils}"
